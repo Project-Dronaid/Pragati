@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hack/Courses/home.view.dart';
 import 'package:hack/firebase/auth.dart';
 import 'package:hack/pages/authenticate.dart';
 import 'package:hack/pages/home_page.dart';

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hack/firebase/auth.dart';
+import 'package:hack/harsh/lib/screen/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 
@@ -55,45 +56,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
-        // appBar: constraints.maxWidth < mobileBreakPoint
-        //     ? PreferredSize(
-        //         preferredSize: Size(double.infinity, 55.0),
-        //         child: MobileAppBar(),
-        //       )
-        //     : PreferredSize(
-        //         preferredSize: Size(double.infinity, 72.0),
-        //         child: WebAppBar(),
-        //       ),
-        // drawer: constraints.maxWidth < mobileBreakPoint ? Drawer() : null,
-        body: Align(
-          alignment: Alignment.center,
-          child: Scaffold(
-            body: curr_page,
-            bottomNavigationBar: BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.chat),
-                  label: 'Chat',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.group),
-                  label: 'Community',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.energy_savings_leaf),
-                  label: 'Plan',
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              selectedItemColor: Colors.amber[800],
-              unselectedItemColor: Colors.black,
-              onTap: _onItemTapped,
-            ),
+        body: Container(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  AuthServices().signOut();
+                },
+                child: Text("Sign Out"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage2()));
+                },
+                child: Text("Marketplace"),
+              ),
+            ],
           ),
         ),
       ),
