@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hack/Community/MainPage.dart';
 import 'package:hack/Courses/Course_Home.dart';
 import 'package:hack/Management/Management/financeManagement.dart';
+import 'package:hack/harsh/lib/providers/cart_provider.dart';
 import 'package:hack/harsh/lib/screen/home/home_page.dart';
 import 'package:hack/pages/home.dart';
+import 'package:provider/provider.dart';
 
 class HomePage_Main extends StatefulWidget {
   @override
@@ -14,10 +16,14 @@ class _HomePage_MainState extends State<HomePage_Main> {
   int _currentIndex = 0;
 
   int _selectedIndex = 0;
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     switch (index) {
       case 1:
         {
+          final cart = Provider.of<Cart>(context, listen: false);
+
+          await cart.storeAllItems();
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomePage2()),

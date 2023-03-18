@@ -8,6 +8,8 @@ import 'package:hack/pages/authenticate.dart';
 import 'package:hack/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
+import 'harsh/lib/providers/cart_provider.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: Data(),),
+        ChangeNotifierProvider.value(value: Cart()),
         StreamProvider<User?>(
           create: (context) {
             return AuthServices().userChanges;

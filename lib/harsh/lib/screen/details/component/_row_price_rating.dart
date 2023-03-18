@@ -8,7 +8,7 @@ Row buildRowPriceRating(product) {
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           )),
     ],
   );

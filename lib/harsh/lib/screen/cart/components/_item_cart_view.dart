@@ -18,7 +18,7 @@ Card buildCartCard(product) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.title,
+                    product.name,
                     style: mediumText,
                   ),
                   Text(
