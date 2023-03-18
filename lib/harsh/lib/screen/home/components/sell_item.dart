@@ -1,4 +1,4 @@
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hack/firebase/auth.dart';
@@ -6,6 +6,7 @@ import 'package:hack/firebase/db.dart';
 import 'package:hack/harsh/lib/providers/cart_provider.dart';
 import 'package:hack/harsh/lib/screen/home/home_page.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'dart:io';
 
 import 'package:provider/provider.dart';
