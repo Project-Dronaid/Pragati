@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hack/Courses/play_course.dart';
 
 class EnrollSuccessScreen extends StatefulWidget {
+  final String title;
+  final String description;
+  EnrollSuccessScreen(
+      { required this.description, required this.title});
   @override
   _EnrollSuccessScreenState createState() => _EnrollSuccessScreenState();
 }
@@ -80,12 +84,10 @@ class _EnrollSuccessScreenState extends State<EnrollSuccessScreen>
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to the course page
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => VideoPlayerScreen(),
-                      ),
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          YoutubePlayerScreen(videoId: 'fdz01KR_OJo',title: widget.title,description: widget.description,),
+                    ));
                   },
                   child: Text('Go to course'),
                   style: ElevatedButton.styleFrom(

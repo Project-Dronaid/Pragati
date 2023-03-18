@@ -235,7 +235,7 @@ class _HomePage_MainState extends State<HomePage_Main> {
                       label: 'School',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.settings),
+                      icon: Icon(Icons.group),
                       label: 'Settings',
                     ),
                     BottomNavigationBarItem(

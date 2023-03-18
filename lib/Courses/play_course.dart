@@ -1,107 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoPlayerScreen extends StatefulWidget {
+class YoutubePlayerScreen extends StatefulWidget {
+  final String videoId;
+  final String title;
+  final String description;
+  YoutubePlayerScreen({required this.videoId, required this.description, required this.title});
+
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+  _YoutubePlayerScreenState createState() => _YoutubePlayerScreenState();
 }
 
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late VideoPlayerController _controller;
-  bool _isPlaying = false;
+class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-      });
+    _controller = YoutubePlayerController(
+      initialVideoId: widget.videoId,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: Stack(
-                      children: [
-                        VideoPlayer(_controller),
-                        Center(
-                          child: IconButton(
-                            iconSize: 64,
-                            color: Colors.black,
-                            icon: _isPlaying
-                                ? Icon(
-                                    Icons.pause_circle_filled,
-                                    color: Colors.black,
-                                  )
-                                : Icon(
-                                    Icons.play_circle_filled,
-                                    color: Colors.black,
-                                  ),
-                            onPressed: () {
-                              setState(() {
-                                _isPlaying = !_isPlaying;
-                                if (_isPlaying) {
-                                  _controller.play();
-                                } else {
-                                  _controller.pause();
-                                }
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : Container(
-                    child: Text("Loading"),
-                  ),
-          ),
-          SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.thumb_up),
-                label: Text('Like'),
+        appBar: AppBar(
+          backgroundColor: Color(0xffCF6F5A),
+          title: Text('Player'),
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                progressIndicatorColor: Colors.blueAccent,
               ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.share),
-                label: Text('Share'),
-              ),
-            ],
-          ),
-          SizedBox(height: 16.0),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text(
-                  'Video Title',
-                  style: Theme.of(context).textTheme.headline6,
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll(Color(0xffCF6F5A))),
+                  onPressed: () {},
+                  icon: Icon(Icons.thumb_up),
+                  label: Text('Like'),
                 ),
-                SizedBox(height: 8.0),
-                Text(
-                  'Video Description',
-                  style: Theme.of(context).textTheme.bodyText2,
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll(Color(0xffCF6F5A))),
+                  onPressed: () {},
+                  icon: Icon(Icons.share),
+                  label: Text('Share'),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+            SizedBox(height: 16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      widget.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    SizedBox(height: 8.0),
+                    Text(
+                      widget.description,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  ]),
+            )
+          ],
+        ));
   }
 
   @override
