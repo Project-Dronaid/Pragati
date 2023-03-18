@@ -45,6 +45,8 @@ dependencies:
   pinput: ^2.2.31
   flutter_svg: ^2.0.4
   get: ^4.6.5
+  image_picker: ^0.8.7
+  firebase_storage: ^11.0.16
 
 dev_dependencies:
   flutter_test:

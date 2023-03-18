@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hack/harsh/lib/providers/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/Product.dart';
-import '../../models/_res_files.dart';
 import 'components/_build_app_bar.dart';
 import 'components/_item_cart_view.dart';
 
@@ -13,7 +14,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    List<Product> products = Res.fetchProducts();
+    List<Product> products = Provider.of<Cart>(context).productList;
     return Scaffold(
         //backgroundColor: Colors.grey.shade200,
         appBar: buildAppBar(context),

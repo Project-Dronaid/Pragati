@@ -52,7 +52,7 @@ Row _titlePrice(Product product) {
   return Row(
     children: [
       Text(
-        product.title,
+        product.name,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -70,8 +70,8 @@ Row _titlePrice(Product product) {
 }
 
 Image imageIcon(Product product) {
-  return Image.asset(
-    product.image,
+  return Image.network(
+    product.imageLink,
     fit: BoxFit.cover,
     height: 100,
     width: 100,

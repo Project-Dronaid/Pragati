@@ -22,7 +22,6 @@ Card _productCard(Product product) {
       ),
     ),
     elevation: 2,
-    color: product.color,
     child: GridTile(
       child: Column(
         children: [
@@ -40,7 +39,7 @@ Card _productCard(Product product) {
 
 Text _title(Product product) {
   return Text(
-    product.title,
+    product.name,
     style: const TextStyle(
       fontWeight: FontWeight.bold,
       color: Colors.white,
@@ -53,8 +52,8 @@ Container _imageIcon(Product product) {
     height: 100,
     width: 120,
     padding: const EdgeInsets.all(20),
-    child: Image.asset(
-      product.image,
+    child: Image.network(
+      product.imageLink,
       fit: BoxFit.cover,
       height: 80,
       width: 80,
