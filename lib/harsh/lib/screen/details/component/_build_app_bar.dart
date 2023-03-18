@@ -5,9 +5,8 @@ import 'package:hack/harsh/lib/components/_close_activity.dart';
 AppBar detailAppBar(product) {
   return AppBar(
     elevation: 0,
-    backgroundColor: product.color,
     title: Text(
-      product.title,
+      product.name,
       style: const TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.bold,

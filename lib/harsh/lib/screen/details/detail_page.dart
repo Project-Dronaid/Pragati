@@ -19,32 +19,45 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: detailAppBar(product),
-      body: Stack(
-        children: [
-          showImageView(context, product),
-          const SizedBox(height: kSpace),
-          Positioned(
-            bottom: 50,
-            left: 20,
-            right: 20,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                buildRowPriceRating(product),
-                const SizedBox(height: kSpace),
-                Text(
-                  product.description,
-                  textAlign: TextAlign.justify,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 16.0, color: Colors.white),
-                  maxLines: 5,
-                ),
-                const SizedBox(height: 20),
-                Center(child: btnAddToCart(context, product)),
-              ],
+      body: Container(
+        color: Colors.cyan[300],
+        child: Column(
+          children: [
+            showImageView(context, product),
+            const SizedBox(height: kSpace),
+            buildRowPriceRating(product),
+            Text(
+              product.description,
+              textAlign: TextAlign.justify,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 16.0, color: Colors.black),
+              maxLines: 5,
             ),
-          ),
-        ],
+            
+            Center(child: btnAddToCart(context, product)),
+            // Positioned(
+            //   bottom: 100,
+            //   left: 20,
+            //   right: 20,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       buildRowPriceRating(product),
+            //       const SizedBox(height: kSpace),
+            //       Text(
+            //         product.description,
+            //         textAlign: TextAlign.justify,
+            //         overflow: TextOverflow.ellipsis,
+            //         style: const TextStyle(fontSize: 16.0, color: Colors.black),
+            //         maxLines: 5,
+            //       ),
+            //       const SizedBox(height: 20),
+            //       Center(child: btnAddToCart(context, product)),
+            //     ],
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
