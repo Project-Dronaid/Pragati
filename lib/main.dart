@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hack/Courses/Course_Home.dart';
+import 'package:hack/Management/Management/provider.dart';
 import 'package:hack/firebase/auth.dart';
 import 'package:hack/pages/authenticate.dart';
 import 'package:hack/pages/home_page.dart';
 import 'package:provider/provider.dart';
+
+import 'harsh/lib/providers/cart_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: Data(),),
+        ChangeNotifierProvider.value(value: Cart()),
         StreamProvider<User?>(
           create: (context) {
             return AuthServices().userChanges;
@@ -28,12 +34,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          
           primarySwatch: Colors.blue,
         ),
-        home: const Wrapper(),
+        home: Wrapper(),
       ),
     );
   }
@@ -48,7 +54,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return const Authenticate();
     } else {
-      return const HomePage();
+      return HomePage_Main();
     }
   }
 }
