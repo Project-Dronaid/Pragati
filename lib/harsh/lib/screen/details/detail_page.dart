@@ -18,7 +18,7 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: detailAppBar(product),
+      appBar: detailAppBar(product, context),
       body: Container(
         color: Colors.cyan[300],
         child: Column(
