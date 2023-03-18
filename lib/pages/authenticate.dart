@@ -1,7 +1,11 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hack/firebase/auth.dart';
+import 'package:rive/rive.dart';
 import '../constants/constant_colors.dart';
 import 'login_screen.dart';
 
@@ -18,13 +22,9 @@ class _AuthenticateState extends State<Authenticate> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     // setState(() {});
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: width,
-          height: height,
-          child: const Content(),
-        ),
+        body: Content(),
       ),
     );
   }
@@ -38,6 +38,13 @@ class Content extends StatefulWidget {
 }
 
 class _ContentState extends State<Content> {
+  late RiveAnimationController _btnAnimatioController;
+
+  @override
+  void initState() {
+    _btnAnimatioController = OneShotAnimation("active", autoplay: false);
+    super.initState();
+  }
   TextEditingController phoneController = TextEditingController();
   bool isLoading = false;
   bool showOnboarding = true;
@@ -45,116 +52,91 @@ class _ContentState extends State<Content> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    print(height);
     if (showOnboarding) {
-      return Center(
-        child: Column(
+      return Stack(
           children: [
-            Container(
-              width: width,
-              height: height * 0.5,
-              margin: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color.fromRGBO(251, 229, 0, 0.8),
-                borderRadius: BorderRadius.circular(30),
+            Positioned(
+              width: width * 1.7,
+              bottom: 200,
+              left: 100,
+              child: Image.asset("assets/Backgrounds/Spline.png"),
+            ),
+            Positioned.fill(
+                child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 20,
+                sigmaY: 10,
               ),
-              child: Stack(children: [
-                
-              ]),
+              child: SizedBox(),
+            )),
+            const RiveAnimation.asset(
+              "assets/RiveAssets/shapes.riv",
+              fit: BoxFit.cover,
             ),
-            SizedBox(
-              height: height * (45 / height),
-            ),
-            SizedBox(
-              height: height * 0.3,
+            Positioned.fill(
+                child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: 30,
+                sigmaY: 30,
+              ),
+              child: SizedBox(),
+            )),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.08),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Get all the",
-                        style: GoogleFonts.lexend(
-                            fontWeight: FontWeight.w600,
-                            fontSize: height * 0.03),
-                      ),
-                      Text(
-                        "customer info here",
-                        style: GoogleFonts.lexend(
-                            fontWeight: FontWeight.w600,
-                            fontSize: height * 0.03),
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      Text(
-                        "Discover your sales,",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.02,
+                  SizedBox(
+                    width: 260,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Welcome to PRAGATI",
+                          style: TextStyle(
+                              fontSize: height * 0.05,
+                              fontFamily: "Poppins",
+                              height: 1.2,
+                              fontWeight: FontWeight.w600),
                         ),
-                      ),
-                      Text(
-                        "Average order value of each",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.02,
+                        SizedBox(
+                          height: height * 0.016,
                         ),
-                      ),
-                      Text(
-                        "customer and more.",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.02,
-                        ),
-                      ),
-                    ],
+                        Text(
+                          "This app is designed to empower and support rural women by providing them with access to resources, education, and opportunities that can help them improve their lives and the lives of their families.",
+                          style: TextStyle(fontFamily: "Poppins", fontSize: 20),
+                        )
+                      ],
+                    ),
                   ),
-                  GestureDetector(
-                    onTap: () {
+                  Spacer(),
+                  Animatedbtn(
+                    btnAnimatioController: _btnAnimatioController,
+                    press: () {
+                      _btnAnimatioController.isActive = true;
                       setState(() {
                         showOnboarding = false;
                       });
                     },
-                    child: Container(
-                      width: width * 0.6,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.black,
-                      ),
-                      child: SizedBox(
-                        width: width * 0.6,
-                        height: height * 0.06,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(children: [
-                              Text(
-                                "Get Started",
-                                style: GoogleFonts.lexend(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: height * 0.03,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                'assets/icons/Vector (8).svg',
-                                height: height * 0.023,
-                                width: height * 0.023,
-                              ),
-                            ]),
-                          ],
-                        ),
-                      ),
-                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.016,
+                  ),
+                  Text(
+                      '"Empowering rural women is not just a matter of human rights, it\'s also crucial for sustainable development and economic growth."',
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600)),
+                  SizedBox(
+                    height: height * 0.016,
                   ),
                 ],
               ),
-            ),
+            )
           ],
-        ),
-      );
-    } else {
+        );
+  } else {
       return SingleChildScrollView(
         child: Column(
           children: [
@@ -220,9 +202,7 @@ class _ContentState extends State<Content> {
                     fontSize: height * 0.015,
                     color: Colors.black,
                   ),
-                  children: const <InlineSpan>[
-                    
-                  ],
+                  children: const <InlineSpan>[],
                 ),
               ),
             ),
@@ -356,5 +336,47 @@ class _ContentState extends State<Content> {
       );
       ;
     }
+  }
+}
+class Animatedbtn extends StatelessWidget {
+  const Animatedbtn({
+    super.key,
+    required RiveAnimationController btnAnimatioController,
+    required this.press,
+  }) : _btnAnimatioController = btnAnimatioController;
+
+  final RiveAnimationController _btnAnimatioController;
+  final VoidCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: SizedBox(
+        height: 64,
+        width: 260,
+        child: Stack(children: [
+          RiveAnimation.asset(
+            "assets/RiveAssets/button.riv",
+            controllers: [_btnAnimatioController],
+          ),
+          Positioned.fill(
+              top: 8,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(CupertinoIcons.arrow_right),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "Get Started",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ))
+        ]),
+      ),
+    );
   }
 }
