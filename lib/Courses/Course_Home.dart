@@ -14,9 +14,7 @@ class _HomePage_CourseState extends State<HomePage_Course> {
     'Development',
     'Business',
     'Finance & Accounting',
-    'IT & Software',
-    'Office Productivity',
-    'Personal Development',
+    'Office Productivity'
   ];
 
   List<Map<String, dynamic>> dev_courses = [
@@ -182,7 +180,169 @@ class _HomePage_CourseState extends State<HomePage_Course> {
           'This course provides an overview of financial planning for retirement. Topics covered include budgeting, investing, and retirement accounts.'
     },
   ];
-
+  List<Map<String, dynamic>> accountingCourses = [
+    {
+      'title': 'Principles of Accounting',
+      'author': 'John Smith',
+      'level': 'Beginner',
+      'rating': 4.2,
+      'price': 19.99,
+      'imageUrl': 'https://picsum.photos/seed/11/300/200',
+    },
+    {
+      'title': 'Financial Accounting',
+      'author': 'Jane Johnson',
+      'level': 'Intermediate',
+      'rating': 4.5,
+      'price': 29.99,
+      'imageUrl': 'https://picsum.photos/seed/12/300/200',
+    },
+    {
+      'title': 'Managerial Accounting',
+      'author': 'Bob Brown',
+      'level': 'Advanced',
+      'rating': 4.8,
+      'price': 39.99,
+      'imageUrl': 'https://picsum.photos/seed/13/300/200',
+    },
+    {
+      'title': 'Tax Accounting',
+      'author': 'Samantha Lee',
+      'level': 'Intermediate',
+      'rating': 4.6,
+      'price': 24.99,
+      'imageUrl': 'https://picsum.photos/seed/14/300/200',
+    },
+    {
+      'title': 'Auditing and Assurance Services',
+      'author': 'Jack Johnson',
+      'level': 'Advanced',
+      'rating': 4.4,
+      'price': 44.99,
+      'imageUrl': 'https://picsum.photos/seed/15/300/200',
+    },
+  ];
+  List<Map<String, String>> accountingcourseDescriptions = [
+    {
+      'title': 'Principles of Accounting',
+      'description':
+          'An introductory course that covers the basics of accounting, including financial statements, debits and credits, and bookkeeping.'
+    },
+    {
+      'title': 'Financial Accounting',
+      'description':
+          'An intermediate-level course that covers more advanced accounting topics, such as cash flow analysis, inventory management, and tax accounting.'
+    },
+    {
+      'title': 'Managerial Accounting',
+      'description':
+          'A course that focuses on the use of accounting information in making business decisions, including cost analysis, budgeting, and performance evaluation.'
+    },
+    {
+      'title': 'Tax Accounting',
+      'description':
+          'A course that covers the tax laws and regulations that affect individuals and businesses, including income tax, sales tax, and payroll tax.'
+    },
+    {
+      'title': 'Auditing and Assurance Services',
+      'description':
+          'A course that covers the principles and practices of auditing, including risk assessment, internal controls, and audit reports.'
+    },
+  ];
+  List<Map<String, dynamic>> officeCourses = [
+    {
+      'title': 'Microsoft Excel - Basic to Advanced',
+      'author': 'Jenny Lee',
+      'level': 'Beginner ',
+      'rating': 4.7,
+      'price': 49.99,
+      'imageUrl': 'https://picsum.photos/seed/21/300/200',
+    },
+    {
+      'title': 'Microsoft Word - Essential Skills',
+      'author': 'David Nguyen',
+      'level': 'Beginner',
+      'rating': 4.4,
+      'price': 29.99,
+      'imageUrl': 'https://picsum.photos/seed/22/300/200',
+    },
+    {
+      'title': 'Microsoft PowerPoint - Advanced Techniques',
+      'author': 'Sarah Johnson',
+      'level': 'Intermediate ',
+      'rating': 4.6,
+      'price': 39.99,
+      'imageUrl': 'https://picsum.photos/seed/23/300/200',
+    },
+    {
+      'title': 'Google Sheets - Essential Skills',
+      'author': 'Michael Lee',
+      'level': ' Intermediate',
+      'rating': 4.3,
+      'price': 24.99,
+      'imageUrl': 'https://picsum.photos/seed/24/300/200',
+    },
+    {
+      'title': 'Google Docs - Advanced Techniques',
+      'author': 'Linda Kim',
+      'level': ' Advanced',
+      'rating': 4.8,
+      'price': 44.99,
+      'imageUrl': 'https://picsum.photos/seed/25/300/200',
+    },
+  ];
+  List<Map<String, String>> officeCoursesDescriptions = [
+    {
+      'title': 'Microsoft Excel for Beginners',
+      'description':
+          'Learn the basics of Microsoft Excel, including data entry, formatting, and basic functions.'
+    },
+    {
+      'title': 'Advanced Microsoft Excel',
+      'description':
+          'Build on your Excel skills with advanced topics such as pivot tables, advanced formulas, and data analysis.'
+    },
+    {
+      'title': 'Microsoft PowerPoint for Presentations',
+      'description':
+          'Learn how to create effective and engaging presentations using Microsoft PowerPoint, including design principles and presentation delivery tips.'
+    },
+    {
+      'title': 'Microsoft Word for Business',
+      'description':
+          'Master Microsoft Word for business use, including document formatting, mail merge, and collaboration tools.'
+    },
+    {
+      'title': 'Google Workspace Essentials',
+      'description':
+          'Learn how to use Google Workspace (formerly G Suite) productivity tools, including Gmail, Google Drive, and Google Docs.'
+    },
+    {
+      'title': 'Project Management with Microsoft Project',
+      'description':
+          'Learn how to use Microsoft Project to plan and manage projects, including task scheduling, resource allocation, and budget tracking.'
+    },
+    {
+      'title': 'Time Management for Productivity',
+      'description':
+          'Develop time management skills to increase productivity and reduce stress, including strategies for prioritizing tasks, managing distractions, and improving focus.'
+    },
+    {
+      'title': 'Communication Skills for Professionals',
+      'description':
+          'Develop effective communication skills for the workplace, including email etiquette, public speaking, and conflict resolution.'
+    },
+    {
+      'title': 'Data Analysis with Tableau',
+      'description':
+          'Learn how to use Tableau for data visualization and analysis, including creating interactive dashboards and charts.'
+    },
+    {
+      'title': 'Social Media Marketing for Businesses',
+      'description':
+          'Learn how to use social media platforms such as Facebook, Twitter, and Instagram for business marketing and branding purposes.'
+    },
+  ];
   List<Map<String, dynamic>> enrolled_courses = [
     {
       'title': 'The Complete Web Development Course',
@@ -239,6 +399,38 @@ class _HomePage_CourseState extends State<HomePage_Course> {
       'category': 'marketing'
     },
   ];
+  List<Map<String, String>> enrolledCoursesDescriptions = [
+    {
+      'title': 'The Complete Web Development Course',
+      'description':
+          'Learn the complete web development stack from HTML and CSS to JavaScript and React.'
+    },
+    {
+      'title': 'Marketing Strategies for Entrepreneurs',
+      'description':
+          'Discover the marketing strategies that successful entrepreneurs use to grow their businesses.'
+    },
+    {
+      'title': 'Introduction to Business Management',
+      'description':
+          'Learn the basics of business management, including planning, organizing, and leading.'
+    },
+    {
+      'title': 'The Complete Python Bootcamp',
+      'description':
+          'Get up to speed with Python, one of the most popular programming languages used in data science and web development.'
+    },
+    {
+      'title': 'Financial Planning for Entrepreneurs',
+      'description':
+          'Learn how to manage your personal and business finances, and plan for a secure financial future.'
+    },
+    {
+      'title': 'Social Media Marketing for Small Businesses',
+      'description':
+          'Explore the world of social media marketing and learn how to use it to grow your small business.'
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +473,7 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                 return GestureDetector(
                   onTap: () {
                     switch (index) {
-                      case 1:
+                      case 0:
                         {
                           Navigator.push(
                             context,
@@ -289,6 +481,46 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                               builder: (context) => CourseGridViewScreen(
                                 courses: dev_courses,
                                 courseDescriptions: devCourseDescriptions,
+                              ),
+                            ),
+                          );
+                        }
+                        break;
+                      case 1:
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CourseGridViewScreen(
+                                courses: business_courses,
+                                courseDescriptions: businesscourseDescriptions,
+                              ),
+                            ),
+                          );
+                        }
+                        break;
+                      case 2:
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CourseGridViewScreen(
+                                courses: accountingCourses,
+                                courseDescriptions:
+                                    accountingcourseDescriptions,
+                              ),
+                            ),
+                          );
+                        }
+                        break;
+                      case 3:
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CourseGridViewScreen(
+                                courses: officeCourses,
+                                courseDescriptions: officeCoursesDescriptions,
                               ),
                             ),
                           );
@@ -323,8 +555,21 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                   ),
                 ),
                 TextButton(
-                  child: Text('See All'),
-                  onPressed: () {},
+                  child: Text(
+                    'See All',
+                    style: TextStyle(color: Color(0xffCF6F5A)),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseGridViewScreen(
+                          courses: enrolled_courses,
+                          courseDescriptions: enrolledCoursesDescriptions,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -474,8 +719,21 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                   ),
                 ),
                 TextButton(
-                  child: Text('See All'),
-                  onPressed: () {},
+                  child: Text(
+                    'See All',
+                    style: TextStyle(color: Color(0xffCF6F5A)),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseGridViewScreen(
+                          courses: dev_courses,
+                          courseDescriptions: devCourseDescriptions,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -629,7 +887,17 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                     'See All',
                     style: TextStyle(color: Color(0xffCF6F5A)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseGridViewScreen(
+                          courses: dev_courses,
+                          courseDescriptions: devCourseDescriptions,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -783,7 +1051,17 @@ class _HomePage_CourseState extends State<HomePage_Course> {
                     'See All',
                     style: TextStyle(color: Color(0xffCF6F5A)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CourseGridViewScreen(
+                          courses: business_courses,
+                          courseDescriptions: businesscourseDescriptions,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

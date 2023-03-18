@@ -8,8 +8,11 @@ import 'package:hack/firebase/auth.dart';
 import 'package:hack/firebase/db.dart';
 import 'package:hack/harsh/lib/providers/cart_provider.dart';
 import 'package:hack/harsh/lib/screen/home/home_page.dart';
+import 'package:hack/pages/Users_Profile.dart';
 import 'package:hack/pages/home.dart';
+import 'package:hack/pages/profile.dart';
 import 'package:hack/pages/profile_setup.dart';
+import 'package:hack/pages/settings.dart';
 import 'package:provider/provider.dart';
 
 class Friend {
@@ -117,12 +120,24 @@ class _HomePage_MainState extends State<HomePage_Main> {
                       icon: Icon(Icons.person),
                       onPressed: () {
                         // TODO: handle profile icon press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileInfoPage(
+                                  userName: "Sandeep Rai",
+                                  userEmail: "contact4rai@gmail.com")),
+                        );
                       },
                     ),
                     IconButton(
                       icon: Icon(Icons.settings),
                       onPressed: () {
                         // TODO: handle settings icon press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()),
+                        );
                       },
                     ),
                   ],
@@ -203,6 +218,12 @@ class _HomePage_MainState extends State<HomePage_Main> {
                               trailing: ElevatedButton(
                                 onPressed: () {
                                   // TODO: add friend logic
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            LinkedInProfileScreen(),),
+                                  );
                                 },
                                 child: Text('Add Friend'),
                                 style: ButtonStyle(
