@@ -83,7 +83,7 @@ class _financeHomepageState extends State<financeHomepage> {
                                   scaffoldKey.currentState!.openDrawer(),
                               icon: Icon(
                                 Icons.list,
-                                size: 40.0,
+                                size: width*0.09,
                                 color: Colors.white,
                               ),
                             ),
@@ -95,8 +95,8 @@ class _financeHomepageState extends State<financeHomepage> {
                                 animatedTexts: [
                                   TypewriterAnimatedText(
                                     'Good ${data.timeOfDay()}!',
-                                    textStyle: const TextStyle(
-                                      fontSize: 40.0,
+                                    textStyle:  TextStyle(
+                                      fontSize: width*0.09,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,
                                     ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hack/firebase/auth.dart';
+import 'package:hack/harsh/lib/models/Product.dart';
 import '../../details/detail_page.dart';
 import 'package:get/get.dart';
 
@@ -18,19 +20,21 @@ ListView category(productList) {
       });
 }
 
-GridView mostPopularCategory(context, product) {
+GridView mostPopularCategory(context, List<Product> product) {
+  String ownId = AuthServices().getFirebaseUser()!.uid;
+  List filteredList = product.where((ele) => ele.userId != ownId).toList();
   return GridView.count(
     crossAxisCount: 2,
-    children: List.generate(product.length, (index) {
+    children: List.generate(filteredList.length, (index) {
       return GestureDetector(
         onTap: () => {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ProductDetail(product: product[index]),
+              builder: (context) => ProductDetail(product: filteredList[index]),
             ),
           ),
         },
-        child: buildCard(product[index]),
+        child: buildCard(filteredList[index]),
       );
     }),
   );
