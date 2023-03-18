@@ -22,6 +22,7 @@ class CourseDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xffCF6F5A),
         title: Text('Course Details'),
       ),
       body: SingleChildScrollView(
@@ -84,12 +85,18 @@ class CourseDetailScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll(Color(0xffCF6F5A))),
                 onPressed: () {
                   // Add logic to enroll in the course
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EnrollSuccessScreen(),
+                      builder: (context) => EnrollSuccessScreen(
+                        title: title,
+                        description: description,
+                      ),
                     ),
                   );
                 },
