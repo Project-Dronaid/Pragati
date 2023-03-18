@@ -18,6 +18,7 @@ class _HomeState extends State<Home> {
           child: ElevatedButton(
             onPressed: () {
               AuthServices().signOut();
+              
             },
             child: Text("Sign Out"),
           ),

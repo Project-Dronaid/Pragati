@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hack/Courses/Course_Home.dart';
+import 'package:hack/Management/Management/provider.dart';
 import 'package:hack/firebase/auth.dart';
 import 'package:hack/pages/authenticate.dart';
 import 'package:hack/pages/home_page.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: Data(),),
         StreamProvider<User?>(
           create: (context) {
             return AuthServices().userChanges;
@@ -28,11 +31,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Wrapper(),
+        home: Wrapper(),
       ),
     );
   }
@@ -47,7 +51,7 @@ class Wrapper extends StatelessWidget {
     if (user == null) {
       return const Authenticate();
     } else {
-      return HomePage();
+      return HomePage_Main();
     }
   }
 }

@@ -44,6 +44,10 @@ dependencies:
   pinput: ^2.2.31
   flutter_svg: ^2.0.4
   get: ^4.6.5
+  video_player: ^2.6.0
+  animated_text_kit: ^4.2.2
+  rive: ^0.10.3
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +75,10 @@ flutter:
     - assets/apk/
     - assets/images/
     - assets/srcn/
+    - assets/avaters/
+    - assets/Backgrounds/
+    - assets/Communities/
+    - assets/RiveAssets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
