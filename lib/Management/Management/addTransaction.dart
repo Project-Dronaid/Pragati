@@ -148,7 +148,7 @@ class _addTransactionState extends State<addTransaction> {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           labelText: 'amount',
-          labelStyle: TextStyle(fontSize: 17, color: Colors.grey.shade500),
+          labelStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(206,111,89,0.9)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,0.6))),
