@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hack/firebase/auth.dart';
 import 'package:hack/firebase/db.dart';
@@ -19,21 +20,30 @@ class ProfileSetup extends StatefulWidget {
 class _ProfileSetupState extends State<ProfileSetup> {
   bool isLoading = false;
   TextEditingController nameController = TextEditingController();
-  // TextEditingController kitchenNameController = TextEditingController();
+  FocusNode name= FocusNode();
   TextEditingController gstController = TextEditingController();
+  FocusNode gst= FocusNode();
   TextEditingController pinController = TextEditingController();
+  FocusNode pin= FocusNode();
   TextEditingController stateController = TextEditingController();
+  FocusNode state= FocusNode();
   TextEditingController addressLine1Controller = TextEditingController();
+  FocusNode al1= FocusNode();
   TextEditingController addressLine2Controller = TextEditingController();
+  FocusNode al2= FocusNode();
   TextEditingController landmarkController = TextEditingController();
+  FocusNode landmark= FocusNode();
   TextEditingController cityController = TextEditingController();
+  FocusNode city= FocusNode();
   TextEditingController altPhoneNumberController = TextEditingController();
+  FocusNode altphone= FocusNode();
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromRGBO(250, 248, 241, 1),
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -58,127 +68,56 @@ class _ProfileSetupState extends State<ProfileSetup> {
                 SizedBox(
                   height: height * 0.04,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Name of Owner',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      // color: textColor,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: '*',
-                        style: GoogleFonts.inter(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: height * 0.01,
                 ),
-                YellowBox(
-                  width: double.infinity,
+                TextField(
+                  focusNode: name,
                   controller: nameController,
-                  hintText: "Enter Your Name",
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.01),
+                    labelText: 'Enter your name',
+                    labelStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(206,111,89,0.9)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,0.6))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,1))),
+                  ),
                 ),
+
+
                 SizedBox(
                   height: height * 0.04,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Kitchen Name',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      // color: textColor,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: '*',
-                        style: GoogleFonts.inter(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // SizedBox(
-                //   height: height * 0.01,
-                // ),
-                // YellowBox(
-                //   width: double.infinity,
-                //   controller: kitchenNameController,
-                //   hintText: "Enter the name of your Kitchen",
-                // ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'GST Number',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      // color: textColor,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: ' (optional)',
-                        style: GoogleFonts.inter(
-                          // color: greyColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                YellowBox(
-                  width: double.infinity,
+
+                TextField(
+                  focusNode: gst,
                   controller: gstController,
-                  hintText: "Enter your registered GST number ",
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.02),
+                    labelText: 'GSTIN Number',
+                    labelStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(206,111,89,0.9)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,0.6))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,1))),
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.04,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Address',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      // color: textColor,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: '*',
-                        style: GoogleFonts.inter(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     YellowBox(
                       width: width * 0.37,
+                      focusNode: pin,
                       controller: pinController,
                       onChanged: (String pincode) async {
                         final response = await http.get(
@@ -198,6 +137,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                       hintText: "Pincode ",
                     ),
                     YellowBox(
+                      focusNode: state,
                       width: width * 0.37,
                       controller: stateController,
                       enabled: false,
@@ -217,7 +157,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                       // color: greyColor,
                       fontWeight: FontWeight.w500,
                     ),
-                    cursorColor: Colors.yellow,
+                    cursorColor: Color.fromRGBO(206,111,89,1),
                     showCursor: true,
                     decoration: InputDecoration(
                       hintText: "Line 1 (Shop No, Building, Street, Area)",
@@ -227,13 +167,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         fontWeight: FontWeight.w500,
                       ),
                       enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color:Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       border: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                     ),
                   ),
@@ -250,7 +190,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                       // color: greyColor,
                       fontWeight: FontWeight.w500,
                     ),
-                    cursorColor: Colors.yellow,
+                    cursorColor: Color.fromRGBO(206,111,89,1),
                     showCursor: true,
                     decoration: InputDecoration(
                       hintText: "Line 2 (Locality/Town)",
@@ -260,13 +200,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         fontWeight: FontWeight.w500,
                       ),
                       enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       border: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                     ),
                   ),
@@ -283,7 +223,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                       // color: greyColor,
                       fontWeight: FontWeight.w500,
                     ),
-                    cursorColor: Colors.yellow,
+                    cursorColor: Color.fromRGBO(206,111,89,1),
                     showCursor: true,
                     decoration: InputDecoration(
                       hintText: "Landmark",
@@ -293,13 +233,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         fontWeight: FontWeight.w500,
                       ),
                       enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       border: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                     ),
                   ),
@@ -316,7 +256,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                       // color: greyColor,
                       fontWeight: FontWeight.w500,
                     ),
-                    cursorColor: Colors.yellow,
+                    cursorColor: Color.fromRGBO(206,111,89,1),
                     showCursor: true,
                     decoration: InputDecoration(
                       hintText: "City/District",
@@ -326,13 +266,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         fontWeight: FontWeight.w500,
                       ),
                       enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                       border: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.yellow, width: 2),
+                        borderSide: BorderSide(color: Color.fromRGBO(206,111,89,1), width: 2),
                       ),
                     ),
                   ),
@@ -340,33 +280,24 @@ class _ProfileSetupState extends State<ProfileSetup> {
                 SizedBox(
                   height: height * 0.04,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Alternate Phone',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      // color: textColor,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: ' (optional)',
-                        style: GoogleFonts.inter(
-                          // color: greyColor,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: height * 0.01,
                 ),
-                YellowBox(
-                  width: double.infinity,
+                TextField(
+                  focusNode: altphone,
                   controller: altPhoneNumberController,
-                  hintText: "Enter your Alternate mobile number ",
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.02),
+                    labelText: 'Alternatte Phone Number',
+                    labelStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(206,111,89,0.9)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,0.6))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,1))),
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.05,
@@ -381,7 +312,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                             stateController.text == "" ||
                             addressLine1Controller.text == "" ||
                             cityController.text == "") {
-                          showSnackBar(context, "Enter All the details!");
+                          toastmessage("Enter All the details!", context,Color.fromRGBO(206,111,89,0.8), Color.fromRGBO(206,111,89,1));
                           return;
                         }
                         await DataServices().setupResturant(
@@ -403,10 +334,10 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         );
                       },
                       child: Container(
-                        width: width * 0.73,
+                        width: width * 0.8,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: Colors.yellow,
+                          color: Color.fromRGBO(206,111,89,1),
                         ),
                         child: SizedBox(
                           width: width * 0.6,
@@ -434,36 +365,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
                 SizedBox(
                   height: height * 0.03,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    AuthServices().signOut();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          text: 'Let’s get started with your ',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            // color: greyColor,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: '15 day free trial.',
-                              style: GoogleFonts.inter(
-                                // color: textColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: height * 0.06,
                 ),
@@ -475,3 +377,68 @@ class _ProfileSetupState extends State<ProfileSetup> {
     );
   }
 }
+
+
+void toastmessage(String message, BuildContext context2, Color c, Color sc) {
+  var width = MediaQuery.of(context2).size.width;
+  var height = MediaQuery.of(context2).size.height;
+  ScaffoldMessenger.of(context2).showSnackBar(SnackBar(
+    content: Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          child: Row(
+            children: [
+              SizedBox(
+                width: width * 0.1,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      message,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: width * 0.04,
+                          fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          height: height * 0.09,
+          padding: EdgeInsets.all(height * 0.02),
+          decoration: BoxDecoration(
+              color: c, borderRadius: BorderRadius.circular(width * 0.05)),
+        ),
+        Positioned(
+            bottom: 0,
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(width * 0.05),
+                ),
+                child: SvgPicture.asset(
+                  'assets/icons/bubbles.svg',
+                  height: height * 0.06,
+                  width: width * 0.9,
+                  color: sc,
+                ))),
+        Positioned(
+            top: -height * 0.01,
+            child: SvgPicture.asset(
+              'assets/icons/fail.svg',
+              height: height * 0.033,
+              color: sc,
+            ))
+      ],
+    ),
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+  ));
+}
+
