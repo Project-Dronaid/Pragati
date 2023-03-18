@@ -5,12 +5,14 @@ class YellowBox extends StatelessWidget {
   late TextEditingController controller;
   late double width;
   late String hintText;
+  late FocusNode focusNode;
   bool enabled;
   Function(String)? onChanged;
   YellowBox({
     super.key,
     this.onChanged,
     this.enabled = true,
+    required this.focusNode,
     required this.controller,
     required this.width,
     required this.hintText,
@@ -25,26 +27,27 @@ class YellowBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          // color: boxBorder,
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(10),
-      ),
+      // decoration: BoxDecoration(
+      //   border: Border.all(
+      //     // color: boxBorder,
+      //     width: 1,
+      //   ),
+      //   borderRadius: BorderRadius.circular(10),
+      // ),
       child: Center(
         child: TextField(
-          enabled: enabled,
+          focusNode: focusNode,
           controller: controller,
-          onChanged: onChanged,
-          // cursorColor: boxBorder,
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w500,
-            fontSize: 13,
-          ),
           decoration: InputDecoration(
-            hintText: hintText,
-            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.02),
+            labelText: hintText,
+            labelStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(206,111,89,0.9)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,0.6))),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(width: 2, color: Color.fromRGBO(206,111,89,1))),
           ),
         ),
       ),
