@@ -2,10 +2,51 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:hack/harsh/lib/models/Product.dart';
 
 class DataServices {
   final db = FirebaseFirestore.instance;
   final fs = FirebaseStorage.instance;
+
+  Future<bool> isNewUser(String userid) async {
+    bool newUser = true;
+    await db.collection("users").get().then((event) {
+      for (var doc in event.docs) {
+        if (doc.id == userid) {
+          newUser = false;
+          break;
+        }
+      }
+    });
+    return newUser;
+  }
+
+  Future<void> setupResturant({
+    required String name,
+    required String gst,
+    required String pin,
+    required String state,
+    required String address1,
+    required String address2,
+    required String landmark,
+    required String city,
+    required String altPhoneNumber,
+    required String userId,
+  }) async {
+    await db.collection('users').doc(userId).set({
+      "name": name,
+      "gst": gst,
+      "pin": pin,
+      "state": state,
+      "address1": address1,
+      "address2": address2,
+      "landmark": landmark,
+      "city": city,
+      "altPhoneNumber": altPhoneNumber,
+      "userId": userId,
+    }, SetOptions(merge: true));
+  }
+
   Future<String> uploadImage(File img, String id) async {
     var snapShot = await fs.ref().child('images/$id').putFile(img);
     var downloadUrl = await snapShot.ref.getDownloadURL();
@@ -22,7 +63,7 @@ class DataServices {
   }) async {
     DocumentReference ref = db.collection("items").doc();
     String id = ref.id;
-    String img = await uploadImage(imageLink,id);
+    String img = await uploadImage(imageLink, id);
 
     Map<String, dynamic> data = {
       "name": name,
@@ -36,13 +77,32 @@ class DataServices {
     await ref.set(data);
   }
 
+  Stream cartStream(String userId) {
+    return db.collection('users').doc(userId).collection('cart').snapshots();
+  }
+
   Future<void> addItemToCart({
     required String itemid,
     required String userId,
   }) async {
-    await db.collection('users').doc(userId).set({
-      "cart": FieldValue.arrayUnion([itemid, 1]),
-    }, SetOptions(merge: true));
+    DocumentReference ref =
+        db.collection('users').doc(userId).collection('cart').doc();
+    String id = ref.id;
+    await ref.set({"itemid": itemid, "quantity": 1, "cartitemid": id});
+  }
+
+  Future<Product> getProduct(String itemid) async {
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await db.collection('items').doc(itemid).get();
+    Map<String, dynamic> data = snapshot.data()!;
+    return Product(
+        name: data['name'],
+        imageLink: data['imageLink'],
+        price: data['price'],
+        category: data['category'],
+        description: data['description'],
+        userId: data['userId'],
+        id: data['id']);
   }
 
   Future<List<List<dynamic>>> getCart({
@@ -83,6 +143,4 @@ class DataServices {
     });
     return ans;
   }
-
-  
 }
