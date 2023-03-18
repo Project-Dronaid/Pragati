@@ -108,7 +108,9 @@ class _HomePage_MainState extends State<HomePage_Main> {
               return const ProfileSetup();
             } else {
               return Scaffold(
+                backgroundColor: const Color.fromRGBO(250, 248, 241, 1),
                 appBar: AppBar(
+                  backgroundColor: Color.fromRGBO(206, 111, 89, 1),
                   title: Text('Home'),
                   actions: [
                     IconButton(
@@ -139,7 +141,7 @@ class _HomePage_MainState extends State<HomePage_Main> {
                                 feature.first, feature.second))
                             .toList() as List<Widget>?,
                         options: CarouselOptions(
-                          height: 200.0,
+                          height: 175.0,
                           viewportFraction: 0.8,
                           enableInfiniteScroll: true,
                           autoPlay: true,
@@ -163,7 +165,8 @@ class _HomePage_MainState extends State<HomePage_Main> {
                               title: Text(activities[index]),
                               subtitle: Text('Today'),
                               leading: CircleAvatar(
-                                backgroundColor: Colors.red,
+                                backgroundColor:
+                                    Color.fromRGBO(206, 111, 89, 1),
                                 child: Text((index + 1).toString()),
                               ),
                               onTap: () {
@@ -177,9 +180,9 @@ class _HomePage_MainState extends State<HomePage_Main> {
                         height: 20,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(14.0),
                         child: Text(
-                          'Recent Activities',
+                          'Make New Friends',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
@@ -202,11 +205,17 @@ class _HomePage_MainState extends State<HomePage_Main> {
                                   // TODO: add friend logic
                                 },
                                 child: Text('Add Friend'),
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Color.fromRGBO(206, 111, 89, 1))),
                               ),
                             ),
                           );
                         },
-                      ))
+                      )),
+                      SizedBox(
+                        height: 10,
+                      )
                     ],
                   ),
                 ),
@@ -215,27 +224,23 @@ class _HomePage_MainState extends State<HomePage_Main> {
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
                       label: 'Home',
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color.fromRGBO(206, 111, 89, 1),
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.business),
                       label: 'Business',
-                      backgroundColor: Colors.green,
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.school),
                       label: 'School',
-                      backgroundColor: Colors.purple,
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.settings),
                       label: 'Settings',
-                      backgroundColor: Colors.pink,
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.money),
                       label: 'Finance',
-                      backgroundColor: Colors.pink,
                     ),
                   ],
                   currentIndex: _selectedIndex,
@@ -289,12 +294,14 @@ Widget _buildFeatureCard(String feature, int index) {
       'description': 'Description 1'
     },
     {
-      'image': 'https://picsum.photos/id/237/200/300',
+      'image':
+          'https://static.businessworld.in/article/article_extra_large_image/1615186282_J8GCFG_Women_entrepreneur_Nino_.jpg',
       'title': 'Title 2',
       'description': 'Description 2'
     },
     {
-      'image': 'https://picsum.photos/id/237/200/300',
+      'image':
+          'https://static.businessworld.in/article/article_extra_large_image/1615186282_J8GCFG_Women_entrepreneur_Nino_.jpg',
       'title': 'Title 3',
       'description': 'Description 3'
     },
@@ -303,7 +310,7 @@ Widget _buildFeatureCard(String feature, int index) {
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: Color.fromRGBO(206, 111, 89, 1),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Container(
