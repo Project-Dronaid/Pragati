@@ -20,7 +20,7 @@ class ProductDetail extends StatelessWidget {
     return Scaffold(
       appBar: detailAppBar(product, context),
       body: Container(
-        color: Colors.cyan[300],
+        color: Color.fromRGBO(206, 111, 89, 1),
         child: Column(
           children: [
             showImageView(context, product),
@@ -33,7 +33,7 @@ class ProductDetail extends StatelessWidget {
               style: const TextStyle(fontSize: 16.0, color: Colors.black),
               maxLines: 5,
             ),
-            
+
             Center(child: btnAddToCart(context, product)),
             // Positioned(
             //   bottom: 100,
