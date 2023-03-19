@@ -1,5 +1,5 @@
-Rural Women Empowerment App
-Description
+##Rural Women Empowerment App
+#Description
 The Rural Women Empowerment App is designed to support and empower women entrepreneurs in rural areas of India. The app provides a comprehensive platform that includes modules for business planning, learning, community building, and finance management.
 
 The app is designed to help women entrepreneurs overcome the challenges of starting and growing a business in a rural area. The app provides access to resources, training, and tools that can help women entrepreneurs develop their skills, create a business plan, and manage their finances effectively.
