@@ -9,7 +9,7 @@ OutlinedButton btnAddToCart(BuildContext context, product) {
   return OutlinedButton(
       style: OutlinedButton.styleFrom(
           animationDuration: const Duration(seconds: 5),
-          side: const BorderSide(width: 1, color: Colors.white),
+          side: const BorderSide(width: 1, color: Colors.black),
           padding: const EdgeInsets.all(10)),
       onPressed: () async {
         print(AuthServices().getFirebaseUser()!.uid);
@@ -20,7 +20,7 @@ OutlinedButton btnAddToCart(BuildContext context, product) {
       child: const Text(
         'ADD TO CART',
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
       ));

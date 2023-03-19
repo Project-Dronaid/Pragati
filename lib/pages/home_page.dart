@@ -101,6 +101,8 @@ class _HomePage_MainState extends State<HomePage_Main> {
 
   @override
   Widget build(BuildContext context) {
+    var width=MediaQuery.of(context).size.width;
+    var height= MediaQuery.of(context).size.height;
     final user = Provider.of<User?>(context, listen: false);
     return FutureBuilder(
         future: DataServices().isNewUser(user!.uid),
@@ -113,11 +115,11 @@ class _HomePage_MainState extends State<HomePage_Main> {
               return Scaffold(
                 backgroundColor: const Color.fromRGBO(250, 248, 241, 1),
                 appBar: AppBar(
-                  backgroundColor: Color.fromRGBO(206, 111, 89, 1),
-                  title: Text('Home'),
+                  backgroundColor: Color.fromRGBO(250, 248, 241, 1),
+                  title: Text('Home', style: TextStyle(color: Colors.black),),
                   actions: [
                     IconButton(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.person, color: Colors.black,),
                       onPressed: () {
                         // TODO: handle profile icon press
                         Navigator.push(
@@ -130,7 +132,7 @@ class _HomePage_MainState extends State<HomePage_Main> {
                       },
                     ),
                     IconButton(
-                      icon: Icon(Icons.settings),
+                      icon: Icon(Icons.settings, color: Colors.black,),
                       onPressed: () {
                         // TODO: handle settings icon press
                         Navigator.push(
@@ -142,102 +144,159 @@ class _HomePage_MainState extends State<HomePage_Main> {
                     ),
                   ],
                 ),
-                body: Container(
-                  height: 800,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CarouselSlider(
-                        items: features
-                            .map((feature) => _buildFeatureCard(
-                                feature.first, feature.second))
-                            .toList() as List<Widget>?,
-                        options: CarouselOptions(
-                          height: 175.0,
-                          viewportFraction: 0.8,
-                          enableInfiniteScroll: true,
-                          autoPlay: true,
+                body: SingleChildScrollView(
+                  child: Container(
+                    height: height,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: height*0.02,
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Recent Activities',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                        CarouselSlider(
+                          items: features
+                              .map((feature) => _buildFeatureCard( context,
+                                  feature.first, feature.second))
+                              .toList() as List<Widget>?,
+                          options: CarouselOptions(
+                            height:height*0.2,
+                            viewportFraction: 0.8,
+                            enableInfiniteScroll: true,
+                            autoPlay: true,
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: activities.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(activities[index]),
-                              subtitle: Text('Today'),
-                              leading: CircleAvatar(
-                                backgroundColor:
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Recent Activities',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
+
+                        Container(
+                          height: height*0.09,
+                            padding: EdgeInsets.all(16.0),
+                          child:Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor:
                                     Color.fromRGBO(206, 111, 89, 1),
-                                child: Text((index + 1).toString()),
+                                    child: Text("1", style: TextStyle(color: Colors.white),),
+
+                                  ),
+                                  SizedBox(
+                                    width: width*0.03,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Activity 1"),
+                                      Text("Today", style: TextStyle(color: Colors.grey),)
+                                    ],
+                                  )
+                                ],
                               ),
-                              onTap: () {
-                                // Open activity detail page
-                              },
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor:
+                                    Color.fromRGBO(206, 111, 89, 1),
+                                    child: Text("2", style: TextStyle(color: Colors.white),),
+
+                                  ),
+                                  SizedBox(
+                                    width: width*0.03,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Activity 2"),
+                                      Text("Today", style: TextStyle(color: Colors.grey),)
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor:
+                                    Color.fromRGBO(206, 111, 89, 1),
+                                    child: Text("3",style: TextStyle(color: Colors.white),),
+
+                                  ),
+                                  SizedBox(
+                                    width: width*0.03,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Activity 3"),
+                                      Text("Today", style: TextStyle(color: Colors.grey),)
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          )
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(14.0),
+                          child: Text(
+                            'Make New Friends',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                            child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                          itemCount: friends.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Card(
+                              color: Color.fromRGBO(250, 248, 241, 1),
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage(friends[index].imageUrl),
+                                ),
+                                title: Text(friends[index].name),
+                                trailing: ElevatedButton(
+                                  onPressed: () {
+                                    // TODO: add friend logic
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              LinkedInProfileScreen(),),
+                                    );
+                                  },
+                                  child: Text('Add Friend'),
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Color.fromRGBO(206, 111, 89, 1))),
+                                ),
+                              ),
                             );
                           },
+                        )
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(14.0),
-                        child: Text(
-                          'Make New Friends',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          child: ListView.builder(
-                        itemCount: friends.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage(friends[index].imageUrl),
-                              ),
-                              title: Text(friends[index].name),
-                              trailing: ElevatedButton(
-                                onPressed: () {
-                                  // TODO: add friend logic
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            LinkedInProfileScreen(),),
-                                  );
-                                },
-                                child: Text('Add Friend'),
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStatePropertyAll(
-                                        Color.fromRGBO(206, 111, 89, 1))),
-                              ),
-                            ),
-                          );
-                        },
-                      )),
-                      SizedBox(
-                        height: 10,
-                      )
-                    ],
+
+                      ],
+                    ),
                   ),
                 ),
                 bottomNavigationBar: BottomNavigationBar(
@@ -245,7 +304,7 @@ class _HomePage_MainState extends State<HomePage_Main> {
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
                       label: 'Home',
-                      backgroundColor: Color.fromRGBO(206, 111, 89, 1),
+                      backgroundColor: Color.fromRGBO(250, 248, 241, 1),
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.business),
@@ -265,7 +324,8 @@ class _HomePage_MainState extends State<HomePage_Main> {
                     ),
                   ],
                   currentIndex: _selectedIndex,
-                  selectedItemColor: Colors.amber[800],
+                  selectedItemColor:  Color.fromRGBO(206, 111, 89, 1),
+                  unselectedItemColor: Colors.grey,
                   onTap: _onItemTapped,
                 ),
               );
@@ -275,7 +335,8 @@ class _HomePage_MainState extends State<HomePage_Main> {
               child: CircularProgressIndicator(),
             );
           }
-        });
+        }
+        );
   }
 }
 
@@ -306,61 +367,73 @@ class SettingsTab extends StatelessWidget {
   }
 }
 
-Widget _buildFeatureCard(String feature, int index) {
+Widget _buildFeatureCard(BuildContext context2,String feature, int index) {
+  var width=MediaQuery.of(context2).size.width;
+  var height= MediaQuery.of(context2).size.height;
   List<Map<String, String>> items = [
     {
       'image':
-          'https://static.businessworld.in/article/article_extra_large_image/1615186282_J8GCFG_Women_entrepreneur_Nino_.jpg',
-      'title': 'Title 1',
+          'https://womenserve.org/wp-content/uploads/2019/08/gavra-3.jpg',
+      'title': 'Gavra’s Story',
       'description': 'Description 1'
     },
     {
       'image':
-          'https://static.businessworld.in/article/article_extra_large_image/1615186282_J8GCFG_Women_entrepreneur_Nino_.jpg',
-      'title': 'Title 2',
+          'https://womenserve.org/wp-content/uploads/2021/05/NiomaIndia14.jpg',
+      'title': 'Nioma’s Story',
       'description': 'Description 2'
     },
     {
       'image':
-          'https://static.businessworld.in/article/article_extra_large_image/1615186282_J8GCFG_Women_entrepreneur_Nino_.jpg',
-      'title': 'Title 3',
+          'https://d2vbj8g7upsspg.cloudfront.net/fit-in/580x348/filters:format(webp)/30-stades/media/post_attachments/8b5e14c6-004.jpg',
+      'title': 'Rabari’s Story',
       'description': 'Description 3'
+
     },
   ];
 
   return Container(
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(206, 111, 89, 1),
-        borderRadius: BorderRadius.circular(8.0),
+       // color: Color.f,
+       borderRadius: BorderRadius.circular(20.0),
       ),
       child: Container(
-        child: Column(
+        child: Stack(
           children: [
             Container(
-              height: 100,
+              height: height*0.2,
               width: 300,
-              child: Image.network(
-                items[index]['image']!,
-                fit: BoxFit.cover,
+              child: ClipRRect(
+                child: Image.network(
+                  items[index]['image']!,
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              items[index]['title']!,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+            Container(
+              height: height*0.2,
+              width: width*0.9,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(20.0)
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              items[index]['description']!,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
+            //SizedBox(height: 10),
+            Positioned(
+              bottom: height*0.07,
+              right: width*0.04,
+              child: Text(
+                items[index]['title']!,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: width*0.09,
+                  color: Colors.white
+                ),
               ),
             ),
+
           ],
         ),
       ));

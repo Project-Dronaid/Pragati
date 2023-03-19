@@ -5,11 +5,12 @@ import 'package:hack/harsh/lib/screen/details/component/cart_screen.dart';
 
 AppBar detailAppBar(product,BuildContext context) {
   return AppBar(
+    backgroundColor: Color.fromRGBO(250, 248, 241, 1,),
     elevation: 0,
     title: Text(
       product.name,
       style: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontWeight: FontWeight.bold,
       ),
     ),
@@ -24,10 +25,11 @@ AppBar detailAppBar(product,BuildContext context) {
                 .push(MaterialPageRoute(builder: (context) => CartScreen()));
           },
           child: CircleAvatar(
+            backgroundColor: Colors.transparent,
             child: Icon(
               CupertinoIcons.cart,
               size: 30,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),
