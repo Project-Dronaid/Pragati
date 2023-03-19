@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constantString.dart';
+
 class Community extends StatefulWidget {
   const Community({super.key, required this.indexpoint, required this.name});
   final int indexpoint;
@@ -7,26 +9,6 @@ class Community extends StatefulWidget {
   @override
   State<Community> createState() => _CommunityState();
 }
-
-List<String> _commImg = [
-  "assets/CommImg/bsa.jpeg",
-  "assets/CommImg/wg.jpeg",
-  "assets/CommImg/smg.avif",
-  "assets/CommImg/mg.jpeg",
-  "assets/CommImg/cws.jpeg",
-  "assets/CommImg/eg.jpeg",
-  "assets/CommImg/lco.jpeg"
-];
-
-List<String> _commInfo = [
-  "These are groups of entrepreneurs who come together to network, share ideas, and collaborate on projects. Examples include the Chamber of Commerce, local business associations, and industry-specific associations.",
-  "These are groups of women who come together to support each other in their personal and professional lives. Examples include women's business networks, Women in Business groups, and women's leadership groups.",
-  "There are many online communities on platforms such as Facebook and LinkedIn that are dedicated to entrepreneurship and business. Joining these groups can provide access to a large network of peers and mentors.",
-  "These include groups such as the Rotary Club, Lions Club, and Kiwanis Club. They are often focused on community service but also provide networking opportunities for entrepreneurs.",
-  "These are shared workspaces where entrepreneurs can rent a desk or office space. They often provide networking events and workshops for members.",
-  "Many universities, community colleges, and non-profit organizations offer entrepreneurship programs and workshops for aspiring entrepreneurs. These can be a great way to learn new skills and connect with other entrepreneurs.",
-  "There are many mentorship programs available for entrepreneurs, such as SCORE, which pairs entrepreneurs with experienced business professionals."
-];
 
 List<String> _communitiesMembers = [
   '124',
@@ -71,7 +53,7 @@ class _CommunityState extends State<Community> {
                           //BoxShadow
                         ],
                         image: DecorationImage(
-                          image: AssetImage(_commImg[widget.indexpoint]),
+                          image: AssetImage(commImg[widget.indexpoint]),
                           fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.only(
@@ -196,7 +178,6 @@ class _CommunityState extends State<Community> {
                   ],
                 ),
                 Container(
-                  height: height * 0.8,
                   width: double.infinity,
                   decoration: BoxDecoration(color: Color(0xffFAF8F1)),
                   child: Column(children: [
@@ -225,18 +206,7 @@ class _CommunityState extends State<Community> {
                             height: height * 0.01,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             Community(
-                              //               indexpoint: index,
-                              //               name:
-                              //                   _communitesNames[
-                              //                       index],
-                              //             )));
-                            },
+                            onTap: () {},
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius:
@@ -285,7 +255,7 @@ class _CommunityState extends State<Community> {
                                 height: height * 0.02,
                               ),
                               Text(
-                                _commInfo[widget.indexpoint],
+                                commInfo[widget.indexpoint],
                                 style: TextStyle(
                                     color: Color(0xff7C7C7C),
                                     fontFamily: "Poppins",
@@ -294,7 +264,7 @@ class _CommunityState extends State<Community> {
                             ],
                           ),
                           DefaultTabController(
-                              length: 4,
+                              length: 3,
                               child: Column(
                                 children: [
                                   TabBar(
@@ -306,14 +276,6 @@ class _CommunityState extends State<Community> {
                                       Tab(
                                         child: Text(
                                           'Discussions',
-                                          style: TextStyle(
-                                            fontSize: width * 0.04,
-                                          ),
-                                        ),
-                                      ),
-                                      Tab(
-                                        child: Text(
-                                          'Resources',
                                           style: TextStyle(
                                             fontSize: width * 0.04,
                                           ),
@@ -337,8 +299,139 @@ class _CommunityState extends State<Community> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: height * 0.45,
+                                    child: TabBarView(children: [
+                                      ListView.builder(
+                                        itemCount: 5,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    offset: const Offset(
+                                                      0.5,
+                                                      0.5,
+                                                    ),
+                                                    blurRadius: 2.0,
+                                                    spreadRadius: 1.0,
+                                                  ), //BoxShadow
+                                                  //BoxShadow
+                                                ],
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(20.0),
+                                                child: Text(
+                                                  DiscussionForum[
+                                                      widget.indexpoint][index],
+                                                  style: TextStyle(
+                                                      color: Color(0xff7C7C7C),
+                                                      fontFamily: "Poppins",
+                                                      fontSize: height * 0.02),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      ListView.builder(
+                                        itemCount: 5,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    offset: const Offset(
+                                                      0.5,
+                                                      0.5,
+                                                    ),
+                                                    blurRadius: 2.0,
+                                                    spreadRadius: 1.0,
+                                                  ), //BoxShadow
+                                                  //BoxShadow
+                                                ],
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(20.0),
+                                                child: Text(
+                                                  SessionForum[
+                                                      widget.indexpoint][index],
+                                                  style: TextStyle(
+                                                      color: Color(0xff7C7C7C),
+                                                      fontFamily: "Poppins",
+                                                      fontSize: height * 0.02),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      ListView.builder(
+                                        itemCount: commUsers.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.4),
+                                                    offset: const Offset(
+                                                      0.5,
+                                                      0.5,
+                                                    ),
+                                                    blurRadius: 2.0,
+                                                    spreadRadius: 1.0,
+                                                  ), //BoxShadow
+                                                  //BoxShadow
+                                                ],
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(20.0),
+                                                child: Text(
+                                                  commUsers[index],
+                                                  style: TextStyle(
+                                                      color: Color(0xff7C7C7C),
+                                                      fontFamily: "Poppins",
+                                                      fontSize: height * 0.02),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  //
                                 ],
-                              ))
+                              )),
                         ],
                       ),
                     ),

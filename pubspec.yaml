@@ -83,6 +83,7 @@ flutter:
     - assets/Backgrounds/
     - assets/Communities/
     - assets/RiveAssets/
+    - assets/icons/
     - assets/CommImg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
