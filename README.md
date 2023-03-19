@@ -6,10 +6,10 @@ Pragati is designed to support and empower women entrepreneurs in rural areas of
 The app is designed to help women entrepreneurs overcome the challenges of starting and growing a business in a rural area. The app provides access to resources, training, and tools that can help women entrepreneurs develop their skills, create a business plan, and manage their finances effectively.
 
 ## Features
-Business planning module that provides guidance on developing a business plan, creating a marketing strategy, and managing operations.
-Learning centre that includes resources and tools to help women entrepreneurs learn new skills and improve their business knowledge.
-Community section that allows women entrepreneurs to connect with each other, share knowledge and experiences, and support each other's businesses.
-Finance management module that provides tools for managing finances, including payment processing, tax management, expense tracking, credit monitoring, and investment management.
+- Business planning module that provides guidance on developing a business plan, creating a marketing strategy, and managing operations.
+- Learning centre that includes resources and tools to help women entrepreneurs learn new skills and improve their business knowledge.
+- Community section that allows women entrepreneurs to connect with each other, share knowledge and experiences, and support each other's businesses.
+- Finance management module that provides tools for managing finances, including payment processing, tax management, expense tracking, credit monitoring, and investment management.
 
 ## Installation
 Pragati is will be available for download on the Google Play Store and Apple App Store. To install the app, simply search for "Pragati" in the app store on your device, and follow the installation instructions.
