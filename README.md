@@ -18,7 +18,7 @@ Pragati is will be available for download on the Google Play Store and Apple App
 Once you have installed the app, you can create an account and start exploring the various modules. The app includes a user-friendly interface that is easy to navigate, and each module includes detailed instructions and guidance to help you get started.
 
 ## Credits
-The Rural Women Empowerment App was developed by a team of experienced app developers, business consultants, and women entrepreneurs who are passionate about supporting and empowering women in rural areas of India.
+The Rural Women Empowerment App was developed by team Domin8 consisting of Sandeep Rai, Prathmesh Sinha, Harsh Bhansali, and Nirvana Baid.
 
 ## License
 This app is to be licensed under the MIT License. See LICENSE.md for more information.
