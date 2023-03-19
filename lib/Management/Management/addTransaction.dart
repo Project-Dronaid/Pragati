@@ -343,7 +343,7 @@ void toastmessage(String message, BuildContext context2, Color c, Color sc) {
                   bottomLeft: Radius.circular(width * 0.05),
                 ),
                 child: SvgPicture.asset(
-                  'assets/svg/bubbles.svg',
+                  'assets/icons/bubbles.svg',
                   height: height * 0.06,
                   width: width * 0.9,
                   color: sc,
@@ -351,7 +351,7 @@ void toastmessage(String message, BuildContext context2, Color c, Color sc) {
         Positioned(
             top: -height * 0.01,
             child: SvgPicture.asset(
-              'assets/svg/fail.svg',
+              'assets/icons/fail.svg',
               height: height * 0.033,
               color: sc,
             ))

@@ -7,9 +7,10 @@ GestureDetector closeActivity() {
     child: const Padding(
       padding: EdgeInsets.all(10),
       child: CircleAvatar(
+        backgroundColor: Colors.transparent,
         child: Icon(
           Icons.close,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
     ),

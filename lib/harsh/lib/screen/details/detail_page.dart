@@ -18,14 +18,24 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: detailAppBar(product, context),
+      appBar: detailAppBar(
+        product, context, ),
       body: Container(
-        color: Color.fromRGBO(206, 111, 89, 1),
+        color: Color.fromRGBO(250, 248, 241, 1),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             showImageView(context, product),
             const SizedBox(height: kSpace),
-            buildRowPriceRating(product),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildRowPriceRating(product),
+              ],
+            ),
+            SizedBox(
+              height: 6,
+            ),
             Text(
               product.description,
               textAlign: TextAlign.justify,
